@@ -20,4 +20,8 @@ public class AlternativeFirstYearTax {
         alternativeFirstYearTax.put("226-255", 1750);
         alternativeFirstYearTax.put("255+", 2060);
     }
+
+    public HashMap<String, Integer> getAlternativeFirstYearTax() {
+        return alternativeFirstYearTax;
+    }
 }
