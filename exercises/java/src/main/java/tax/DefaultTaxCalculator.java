@@ -1,5 +1,7 @@
 package tax;
 
+import java.util.ArrayList;
+
 public class DefaultTaxCalculator extends TaxCalculator {
     @Override
     int calculateTax(Vehicle vehicle) {
@@ -13,6 +15,9 @@ public class DefaultTaxCalculator extends TaxCalculator {
 
 
     private int calculatePetrolVehicleTax(Vehicle vehicle) {
+
+
+
         if (vehicle.getCo2Emissions() > 255) {
             return 2070;
         }
