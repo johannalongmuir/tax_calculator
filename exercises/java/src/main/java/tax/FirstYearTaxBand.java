@@ -2,10 +2,10 @@ package tax;
 
 import java.util.ArrayList;
 
-public class AllTaxBrackets {
-
+public class FirstYearTaxBand {
     private static ArrayList<TaxBracket> allTaxBracket = new ArrayList<>();
     static {
+        allTaxBracket.add(new TaxBracket(Integer.MIN_VALUE, -1, "INVALID"));
         allTaxBracket.add(new TaxBracket(0, 0, "0-0"));
         allTaxBracket.add(new TaxBracket(1, 50, "1-50"));
         allTaxBracket.add(new TaxBracket(51, 75, "51-75"));
@@ -21,7 +21,7 @@ public class AllTaxBrackets {
         allTaxBracket.add(new TaxBracket(255, Integer.MAX_VALUE,"255+"));
     }
 
-    public static ArrayList<TaxBracket> getAllTaxBracket() {
+    public static ArrayList<TaxBracket> getFirstYearTaxBand() {
         return allTaxBracket;
     }
 }
