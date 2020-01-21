@@ -1,5 +1,6 @@
 package tax;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.time.LocalDate;
@@ -18,6 +19,10 @@ public class TaxCalculatorAfterFirstYearTest {
         FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = true;
     }
 
+    @After
+    public void reset(){
+        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = false;
+    }
 
 
     @Test
@@ -37,4 +42,11 @@ public class TaxCalculatorAfterFirstYearTest {
         Vehicle vehicle = new Vehicle(206, ALTERNATIVE_FUEL, FIRST_OF_APRIL_2017, 20000);
         assertThat(taxCalculator.calculateTax(vehicle)).isEqualTo(130);
     }
+
+    @Test
+    public void subsequentYearsTaxForDiesel() {
+        Vehicle vehicle = new Vehicle(206, DIESEL, FIRST_OF_APRIL_2017, 20000);
+        assertThat(taxCalculator.calculateTax(vehicle)).isEqualTo(140);
+    }
+
 }

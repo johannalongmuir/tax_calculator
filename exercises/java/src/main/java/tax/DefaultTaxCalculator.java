@@ -26,7 +26,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
     }
 
     private int calculateTaxAfterFirstYear(Vehicle vehicle) {
-        if (vehicle.getFuelType().equals(FuelType.PETROL)){
+        if (vehicle.getFuelType().equals(FuelType.PETROL) || vehicle.getFuelType().equals(FuelType.DIESEL)){
             return 140;
         } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)){
             return 0;
