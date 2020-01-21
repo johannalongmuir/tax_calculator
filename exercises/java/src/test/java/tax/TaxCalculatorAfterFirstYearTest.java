@@ -19,12 +19,6 @@ public class TaxCalculatorAfterFirstYearTest {
         taxCalculator.getFeatureToggle().setFEATURE_FOUR_SECOND_TAX_PAYMENTS(true);
     }
 
-
-//    @After
-//    public void reset(){
-//        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = false;
-//    }
-
     @Test
     public void subsequentYearsTaxForPetrol() {
         Vehicle vehicle = new Vehicle(206, PETROL, FIRST_OF_APRIL_2017, 20000);

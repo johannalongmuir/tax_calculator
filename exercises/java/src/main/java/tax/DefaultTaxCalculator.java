@@ -1,10 +1,8 @@
 package tax;
-
 import java.util.Map;
 
 public class DefaultTaxCalculator extends TaxCalculator {
     private static final int CURRENT_YEAR = 2019;
-
 
     public DefaultTaxCalculator() {
         super(new FeatureToggle());
@@ -27,12 +25,13 @@ public class DefaultTaxCalculator extends TaxCalculator {
                 result =  calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             }
         } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()) {
-            if (featureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
-                result =  calculateTaxAfterFirstYear(vehicle);
-            }
+
             if(featureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
                 // doesn't check if vehicles arte over 40000
                 result =  returnTaxForExpensiveVehicles(vehicle.getFuelType());
+            }
+            if (featureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
+                result =  calculateTaxAfterFirstYear(vehicle);
             }
         }
         return result;
@@ -51,6 +50,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
     }
 
 
+    //refactor into FirstYearTaxBand. Call with FirstYearTaxBand.getTaxBand(vehicle);
     private String getTaxBand(Vehicle vehicle) {
         for (int i = 0; i < FirstYearTaxBand.getFirstYearTaxBand().size(); i++) {
             if(vehicle.getCo2Emissions() >= FirstYearTaxBand.getFirstYearTaxBand().get(i).getMinValue()) {
@@ -117,13 +117,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
 
     private int returnTaxForExpensiveVehicles(FuelType fuelType) {
         TaxForExpensiveVehicles taxForExpensiveVehicles = new TaxForExpensiveVehicles();
-
-        Map lookup = taxForExpensiveVehicles.getTaxForExpensiveVehicles();
-
-        Object o = lookup.get(fuelType);
-        int myInt = Integer.parseInt(o.toString());
-
-        return myInt;
+        return taxForExpensiveVehicles.getTaxForExpensiveVehicles().get(fuelType);
     }
 
 
