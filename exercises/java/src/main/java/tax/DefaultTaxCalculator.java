@@ -1,12 +1,11 @@
 package tax;
 
-import java.time.LocalDate;
-
-import static java.time.Month.APRIL;
+import java.util.Map;
 
 public class DefaultTaxCalculator extends TaxCalculator {
 
     private static final int CURRENT_YEAR = 2019;
+
     @Override
     int calculateTax(Vehicle vehicle) {
         if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
@@ -19,6 +18,10 @@ public class DefaultTaxCalculator extends TaxCalculator {
                 return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
                 return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+            }
+        } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()) {
+            if(FeatureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
+                return returnTaxForExpensiveVehicles(vehicle.getFuelType());
             }
         }
         return -1;
@@ -87,5 +90,18 @@ public class DefaultTaxCalculator extends TaxCalculator {
             return 25;
         }
         return 0;
+    }
+
+    private int returnTaxForExpensiveVehicles(FuelType fuelType) {
+        TaxForExpensiveVehicles taxForExpensiveVehicles = new TaxForExpensiveVehicles();
+
+        Map lookup = taxForExpensiveVehicles.getTaxForExpensiveVehicles();
+
+        Object o = lookup.get(fuelType);
+        int myInt = Integer.parseInt(o.toString());
+
+        return myInt;
+
+
     }
 }
