@@ -19,14 +19,22 @@ public class DefaultTaxCalculator extends TaxCalculator {
             }
         } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()){
             if (FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
-                return calculateTaxAfterFirstYear();
+                return calculateTaxAfterFirstYear(vehicle);
             }
         }
         return -1;
     }
 
-    private int calculateTaxAfterFirstYear() {
-        return 140;
+    private int calculateTaxAfterFirstYear(Vehicle vehicle) {
+        if (vehicle.getFuelType().equals(FuelType.PETROL)){
+            return 140;
+        } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)){
+            return 0;
+        } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)){
+            return 130;
+        } else {
+            return -1;
+        }
     }
 
 
