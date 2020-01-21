@@ -16,7 +16,11 @@ public class DefaultTaxCalculator extends TaxCalculator {
         if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
             String taxBracket = getTaxBand(vehicle);
             if (vehicle.getFuelType().equals(FuelType.PETROL)) {
-                result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
+                if (featureToggle.FEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2){
+                    result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
+                } else {
+                    result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
+                }
             } else if (vehicle.getFuelType().equals(FuelType.DIESEL)) {
                 result =  calculateDieselVehicleTax(vehicle);
             } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)) {
