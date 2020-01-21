@@ -19,10 +19,14 @@ public class DefaultTaxCalculator extends TaxCalculator {
             }
         } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()){
             if (FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
-                return -5;
+                return calculateTaxAfterFirstYear();
             }
         }
         return -1;
+    }
+
+    private int calculateTaxAfterFirstYear() {
+        return 140;
     }
 
 
