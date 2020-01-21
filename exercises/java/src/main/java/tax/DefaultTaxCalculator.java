@@ -20,7 +20,11 @@ public class DefaultTaxCalculator extends TaxCalculator {
                     result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
                 }
             } else if (vehicle.getFuelType().equals(FuelType.DIESEL)) {
-                result =  calculateDieselVehicleTax(vehicle);
+                if(featureToggle.FEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2) {
+                    result =
+                } else {
+                    result =  calculateDieselVehicleTax(vehicle);
+                }
             } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)) {
                 result =  calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
@@ -116,6 +120,11 @@ public class DefaultTaxCalculator extends TaxCalculator {
         }
         return 0;
     }
+
+    private int calculateDieselVehicleTaxWithUpdatedprices(Vehicle vehicle) {
+        return -7;
+    }
+
 
     private int returnTaxForExpensiveVehicles(FuelType fuelType) {
         TaxForExpensiveVehicles taxForExpensiveVehicles = new TaxForExpensiveVehicles();
