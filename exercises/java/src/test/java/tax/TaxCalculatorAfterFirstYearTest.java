@@ -19,10 +19,10 @@ public class TaxCalculatorAfterFirstYearTest {
         FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = true;
     }
 
-    @After
-    public void reset(){
-        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = false;
-    }
+//    @After
+//    public void reset(){
+//        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = false;
+//    }
 
 
     @Test
@@ -46,6 +46,12 @@ public class TaxCalculatorAfterFirstYearTest {
     @Test
     public void subsequentYearsTaxForDiesel() {
         Vehicle vehicle = new Vehicle(206, DIESEL, FIRST_OF_APRIL_2017, 20000);
+        assertThat(taxCalculator.calculateTax(vehicle)).isEqualTo(140);
+    }
+
+    @Test
+    public void subsequentYearsTaxForExpensiveVehicle() {
+        Vehicle vehicle = new Vehicle(206, DIESEL, FIRST_OF_APRIL_2017, 50000);
         assertThat(taxCalculator.calculateTax(vehicle)).isEqualTo(140);
     }
 

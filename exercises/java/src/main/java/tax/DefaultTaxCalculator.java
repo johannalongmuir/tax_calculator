@@ -24,10 +24,10 @@ public class DefaultTaxCalculator extends TaxCalculator {
                 return calculateTaxAfterFirstYear(vehicle);
             }
             if(FeatureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
+                // doesn't check if vehicles arte over 40000
                 return returnTaxForExpensiveVehicles(vehicle.getFuelType());
             }
         }
-
         return -1;
     }
 
