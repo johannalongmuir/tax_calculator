@@ -20,11 +20,27 @@ public class DefaultTaxCalculator extends TaxCalculator {
                 return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             }
         } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()) {
+            if (FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
+                return calculateTaxAfterFirstYear(vehicle);
+            }
             if(FeatureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
                 return returnTaxForExpensiveVehicles(vehicle.getFuelType());
             }
         }
+
         return -1;
+    }
+
+    private int calculateTaxAfterFirstYear(Vehicle vehicle) {
+        if (vehicle.getFuelType().equals(FuelType.PETROL) || vehicle.getFuelType().equals(FuelType.DIESEL)){
+            return 140;
+        } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)){
+            return 0;
+        } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)){
+            return 130;
+        } else {
+            return -1;
+        }
     }
 
 
@@ -101,7 +117,5 @@ public class DefaultTaxCalculator extends TaxCalculator {
         int myInt = Integer.parseInt(o.toString());
 
         return myInt;
-
-
     }
 }
