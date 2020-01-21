@@ -1,6 +1,4 @@
 package tax;
-import java.util.Map;
-
 public class DefaultTaxCalculator extends TaxCalculator {
     private static final int CURRENT_YEAR = 2019;
 

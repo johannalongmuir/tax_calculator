@@ -4,6 +4,7 @@ public class FeatureToggle {
     // Need to update this. Static = one everywhere. Issues
     public boolean FEATURE_FOUR_SECOND_TAX_PAYMENTS;
     public boolean FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS;
+    public boolean FEATURE_SIX_NEW_DIESEL_PRICES;
     public boolean FEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2;
 
 
@@ -17,6 +18,10 @@ public class FeatureToggle {
 
     public void setFEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS(boolean FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
         this.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS = FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS;
+    }
+
+    public void setFEATURE_SIX_NEW_DIESEL_PRICES(boolean FEATURE_SIX_NEW_DIESEL_PRICES) {
+        this.FEATURE_SIX_NEW_DIESEL_PRICES = FEATURE_SIX_NEW_DIESEL_PRICES;
     }
 
     public void setFEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2(boolean FEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2) {
