@@ -17,7 +17,7 @@ public class TaxCalculatorAfterFirstYearForExpensiveVehiclesTest {
     @Before
     public void setUp() {
         taxCalculator = new DefaultTaxCalculator();
-        FeatureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS = true;
+        taxCalculator.getFeatureToggle().setFEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS(true);
     }
 
     @Test

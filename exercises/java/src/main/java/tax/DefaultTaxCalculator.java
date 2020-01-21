@@ -3,32 +3,39 @@ package tax;
 import java.util.Map;
 
 public class DefaultTaxCalculator extends TaxCalculator {
-
     private static final int CURRENT_YEAR = 2019;
+
+
+    public DefaultTaxCalculator() {
+        super(new FeatureToggle());
+    }
+
+
 
     @Override
     int calculateTax(Vehicle vehicle) {
+        int result = -1;
         if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
             String taxBracket = getTaxBand(vehicle);
             if (vehicle.getFuelType().equals(FuelType.PETROL)) {
-                return calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
+                result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
             } else if (vehicle.getFuelType().equals(FuelType.DIESEL)) {
-                return calculateDieselVehicleTax(vehicle);
+                result =  calculateDieselVehicleTax(vehicle);
             } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)) {
-                return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+                result =  calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
-                return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+                result =  calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             }
         } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()) {
-            if (FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
-                return calculateTaxAfterFirstYear(vehicle);
+            if (featureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
+                result =  calculateTaxAfterFirstYear(vehicle);
             }
-            if(FeatureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
+            if(featureToggle.FEATURE_FIVE_EXPENSIVE_TAX_PAYMENTS) {
                 // doesn't check if vehicles arte over 40000
-                return returnTaxForExpensiveVehicles(vehicle.getFuelType());
+                result =  returnTaxForExpensiveVehicles(vehicle.getFuelType());
             }
         }
-        return -1;
+        return result;
     }
 
     private int calculateTaxAfterFirstYear(Vehicle vehicle) {
@@ -118,4 +125,6 @@ public class DefaultTaxCalculator extends TaxCalculator {
 
         return myInt;
     }
+
+
 }

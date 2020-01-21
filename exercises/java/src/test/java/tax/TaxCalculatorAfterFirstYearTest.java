@@ -16,14 +16,14 @@ public class TaxCalculatorAfterFirstYearTest {
     @Before
     public void setUp() {
         taxCalculator = new DefaultTaxCalculator();
-        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = true;
+        taxCalculator.getFeatureToggle().setFEATURE_FOUR_SECOND_TAX_PAYMENTS(true);
     }
+
 
 //    @After
 //    public void reset(){
 //        FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS = false;
 //    }
-
 
     @Test
     public void subsequentYearsTaxForPetrol() {
