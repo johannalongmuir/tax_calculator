@@ -20,8 +20,8 @@ public class DefaultTaxCalculator extends TaxCalculator {
                     result = calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
                 }
             } else if (vehicle.getFuelType().equals(FuelType.DIESEL)) {
-                if(featureToggle.FEATURE_SEVEN_NEW_PETROL_RATE_AND_RDE2) {
-                    result =
+                if(featureToggle.FEATURE_SIX_NEW_DIESEL_PRICES) {
+                    result = calculateDieselVehicleTaxWithUpdatedprices(vehicle);
                 } else {
                     result =  calculateDieselVehicleTax(vehicle);
                 }
