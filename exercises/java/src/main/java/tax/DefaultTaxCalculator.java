@@ -1,12 +1,9 @@
 package tax;
 
-import java.time.LocalDate;
-
-import static java.time.Month.APRIL;
-
 public class DefaultTaxCalculator extends TaxCalculator {
 
     private static final int CURRENT_YEAR = 2019;
+
     @Override
     int calculateTax(Vehicle vehicle) {
         if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
@@ -19,6 +16,10 @@ public class DefaultTaxCalculator extends TaxCalculator {
                 return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
             } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
                 return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+            }
+        } else if (CURRENT_YEAR > vehicle.getDateOfFirstRegistration().getYear()){
+            if (FeatureToggle.FEATURE_FOUR_SECOND_TAX_PAYMENTS){
+                return -5;
             }
         }
         return -1;
