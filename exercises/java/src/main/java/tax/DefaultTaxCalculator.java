@@ -1,17 +1,25 @@
 package tax;
 
+import java.time.LocalDate;
+
+import static java.time.Month.APRIL;
+
 public class DefaultTaxCalculator extends TaxCalculator {
+
+    private static final int CURRENT_YEAR = 2019;
     @Override
     int calculateTax(Vehicle vehicle) {
-        String taxBracket = getTaxBand(vehicle);
-        if (vehicle.getFuelType().equals(FuelType.PETROL)) {
-            return calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
-        } else if(vehicle.getFuelType().equals(FuelType.DIESEL)) {
-            return calculateDieselVehicleTax(vehicle);
-        } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)){
-            return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
-        } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
-            return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+        if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
+            String taxBracket = getTaxBand(vehicle);
+            if (vehicle.getFuelType().equals(FuelType.PETROL)) {
+                return calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
+            } else if (vehicle.getFuelType().equals(FuelType.DIESEL)) {
+                return calculateDieselVehicleTax(vehicle);
+            } else if (vehicle.getFuelType().equals(FuelType.ALTERNATIVE_FUEL)) {
+                return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+            } else if (vehicle.getFuelType().equals(FuelType.ELECTRIC)) {
+                return calculateAlternativeVehicleTaxWithTaxBracket(taxBracket);
+            }
         }
         return -1;
     }
