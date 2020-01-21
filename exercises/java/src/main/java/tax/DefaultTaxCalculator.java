@@ -4,7 +4,6 @@ public class DefaultTaxCalculator extends TaxCalculator {
     @Override
     int calculateTax(Vehicle vehicle) {
         String taxBracket = getTaxBand(vehicle);
-
         if (vehicle.getFuelType().equals(FuelType.PETROL)) {
             return calculatePetrolVehicleTaxWithTaxBracket(taxBracket);
         } else if(vehicle.getFuelType().equals(FuelType.DIESEL)) {
@@ -17,12 +16,12 @@ public class DefaultTaxCalculator extends TaxCalculator {
         return -1;
     }
 
+
     private String getTaxBand(Vehicle vehicle) {
         for (int i = 0; i < FirstYearTaxBand.getFirstYearTaxBand().size(); i++) {
             if(vehicle.getCo2Emissions() >= FirstYearTaxBand.getFirstYearTaxBand().get(i).getMinValue()) {
                 if (vehicle.getCo2Emissions() <= FirstYearTaxBand.getFirstYearTaxBand().get(i).getMaxValue()) {
                     return FirstYearTaxBand.getFirstYearTaxBand().get(i).getTaxBracket();
-
                 }
             }
         }
@@ -81,5 +80,4 @@ public class DefaultTaxCalculator extends TaxCalculator {
         }
         return 0;
     }
-
 }
