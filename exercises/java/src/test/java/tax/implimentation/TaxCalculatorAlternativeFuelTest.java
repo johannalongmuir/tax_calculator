@@ -1,15 +1,17 @@
-package tax;
+package tax.implimentation;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import tax.implimentation.DefaultTaxCalculator;
+import tax.implimentation.TaxCalculator;
+import tax.model.Vehicle;
 
 import java.time.LocalDate;
 
 import static java.time.Month.JANUARY;
 import static org.assertj.core.api.Assertions.assertThat;
-import static tax.FuelType.ALTERNATIVE_FUEL;
-import static tax.FuelType.ELECTRIC;
+import static tax.model.FuelType.ALTERNATIVE_FUEL;
+import static tax.model.FuelType.ELECTRIC;
 
 public class TaxCalculatorAlternativeFuelTest {
 

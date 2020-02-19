@@ -1,15 +1,15 @@
-package tax;
+package tax.model;
 
 import java.time.LocalDate;
 
-class Vehicle {
+public class Vehicle {
     private final int co2Emissions;
     private final FuelType fuelType;
     private final LocalDate dateOfFirstRegistration;
     private final int listPrice;
     private boolean RDE2;
 
-    Vehicle(int co2Emissions, FuelType fuelType, LocalDate dateOfFirstRegistration, int listPrice) {
+    public Vehicle(int co2Emissions, FuelType fuelType, LocalDate dateOfFirstRegistration, int listPrice) {
         this.co2Emissions = co2Emissions;
         this.fuelType = fuelType;
         this.dateOfFirstRegistration = dateOfFirstRegistration;
@@ -17,15 +17,15 @@ class Vehicle {
         this.RDE2 = false;
     }
 
-    int getCo2Emissions() {
+    public int getCo2Emissions() {
         return co2Emissions;
     }
 
-    FuelType getFuelType() {
+    public FuelType getFuelType() {
         return fuelType;
     }
 
-    LocalDate getDateOfFirstRegistration() {
+    public LocalDate getDateOfFirstRegistration() {
         return dateOfFirstRegistration;
     }
 

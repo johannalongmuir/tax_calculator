@@ -1,4 +1,6 @@
-package tax;
+package tax.model.taxbrackets;
+
+import tax.model.FuelType;
 
 import java.util.HashMap;
 

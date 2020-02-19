@@ -1,13 +1,13 @@
-package tax;
+package tax.model.taxbrackets;
 
 import java.util.ArrayList;
 
-public class TaxBracket {
+public class TaxBand {
     private Integer minValue;
     private Integer maxValue;
     private String taxBracket;
 
-    public TaxBracket(Integer minValue, Integer maxValue, String taxBracket) {
+    public TaxBand(Integer minValue, Integer maxValue, String taxBracket) {
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.taxBracket = taxBracket;

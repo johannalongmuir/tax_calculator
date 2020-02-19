@@ -1,6 +1,6 @@
-package tax;
+package tax.model;
 
-enum FuelType {
+public enum FuelType {
     PETROL,
     DIESEL,
     ELECTRIC, ALTERNATIVE_FUEL

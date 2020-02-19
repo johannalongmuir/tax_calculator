@@ -1,11 +1,14 @@
-package tax;
+package tax.implimentation;
+
+import tax.FeatureToggle;
+import tax.model.Vehicle;
 
 import java.time.LocalDate;
 
-abstract class TaxCalculator{
+public abstract class TaxCalculator{
     private final int year;
     public FeatureToggle featureToggle;
-    abstract int calculateTax(Vehicle vehicle);
+    public abstract int calculateTax(Vehicle vehicle);
 
 
     public TaxCalculator(FeatureToggle featureToggle) {

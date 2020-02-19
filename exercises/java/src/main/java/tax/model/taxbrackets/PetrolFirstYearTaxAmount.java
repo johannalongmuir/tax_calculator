@@ -1,11 +1,11 @@
-package tax;
+package tax.model.taxbrackets;
 
 import java.util.HashMap;
 
-public class PetrolFirstYearTax {
+public class PetrolFirstYearTaxAmount {
     private HashMap<String, Integer> petrolFirstYearTax = new HashMap<>();
 
-    public PetrolFirstYearTax() {
+    public PetrolFirstYearTaxAmount() {
         petrolFirstYearTax.put("0-0", 0);
         petrolFirstYearTax.put("1-50", 10);
         petrolFirstYearTax.put("51-75", 25);

@@ -1,15 +1,21 @@
-package tax;
-public class DefaultTaxCalculator extends TaxCalculator {
+package tax.implimentation;
+
+import tax.*;
+import tax.model.*;
+import tax.model.taxbrackets.AlternativeFirstYearTaxAmount;
+import tax.model.taxbrackets.FirstYearTaxBand;
+import tax.model.taxbrackets.PetrolFirstYearTaxAmount;
+import tax.model.taxbrackets.TaxForExpensiveVehicles;
+
+class DefaultTaxCalculator extends TaxCalculator {
     private static final int CURRENT_YEAR = 2019;
 
     public DefaultTaxCalculator() {
         super(new FeatureToggle());
     }
 
-
-
     @Override
-    int calculateTax(Vehicle vehicle) {
+    public int calculateTax(Vehicle vehicle) {
         int result = -1;
         if (CURRENT_YEAR == vehicle.getDateOfFirstRegistration().getYear()) {
             String taxBracket = getTaxBand(vehicle);
@@ -70,13 +76,13 @@ public class DefaultTaxCalculator extends TaxCalculator {
 
 
     private int calculatePetrolVehicleTaxWithTaxBracket(String taxBracket) {
-        PetrolFirstYearTax petrolFirstYearTax = new PetrolFirstYearTax();
-        return petrolFirstYearTax.getPetrolFirstYearTax().get(taxBracket);
+        PetrolFirstYearTaxAmount petrolFirstYearTaxAmount = new PetrolFirstYearTaxAmount();
+        return petrolFirstYearTaxAmount.getPetrolFirstYearTax().get(taxBracket);
     }
 
     private int calculateAlternativeVehicleTaxWithTaxBracket(String taxBracket) {
-        AlternativeFirstYearTax alternativeFirstYearTax = new AlternativeFirstYearTax();
-        return alternativeFirstYearTax.getAlternativeFirstYearTax().get(taxBracket);
+        AlternativeFirstYearTaxAmount alternativeFirstYearTaxAmount = new AlternativeFirstYearTaxAmount();
+        return alternativeFirstYearTaxAmount.getAlternativeFirstYearTax().get(taxBracket);
     }
 
 
